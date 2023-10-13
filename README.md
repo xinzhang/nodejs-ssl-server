@@ -94,6 +94,7 @@ npm install
 ```sh
 node app.js
 ```
+make sure security group inbound rule is updated to allow port 3000
 
 ### 6. Install pm2
 ```sh
@@ -125,13 +126,16 @@ sudo apt install nginx
 sudo nano /etc/nginx/sites-available/default
 ```
 
-#### Add the following to the location part of the server block
+#### Add/update the following to the location part of the server block
+Modify the root entry for the server location
 
 ```sh
+    root /home/ubuntu/nodejs-ssl-server;
+
     server_name yourdomain.com www.yourdomain.com;
 
     location / {
-        proxy_pass http://localhost:5000; #whatever port your app runs on
+        proxy_pass http://localhost:3000; #whatever port your app runs on
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
