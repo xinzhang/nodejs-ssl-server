@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
         res.send(`<html>
                     <body>
                         <h1 style="color:blue;text-align: center;margin-top: 100px;"> [Version ${version}]: This is AMAZING!!! Like & Subscribe!</h1>
-<h3>test</h3>                        
+<h3>updated here</h3>                        
 <div style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%)">
                             <img src="https://picsum.photos/400/400?random=1">
                         </div>

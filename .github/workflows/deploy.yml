@@ -1,0 +1,23 @@
+name: ci-cd pipeline deploy to prod
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:        
+    - name: Deploy to prod server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          cd /home/ubuntu/nodejs-ssl-server
+          git stash
+          git pull
+          npm install
+          pm2 restart nodejs-ssl-server
